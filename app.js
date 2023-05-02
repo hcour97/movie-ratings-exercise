@@ -3,14 +3,12 @@ let moviesList = [];
 
 $(function() {
 
-$("#movies-form").on('submit', function(e) {
+$("#movie-form").on('submit', function(e) {
     e.preventDefault();
     let title = $('#movie-title').val();
     let rating = $('#movie-rating').val();
 
-
-    let movieData = {title, rating, currentId}
-    console.log(movieData);
+    let movieData = {title, rating, currentId};
     const HTMLtoAppend = createMovieDataHTML(movieData);
     currentId ++;
 
@@ -18,10 +16,10 @@ $("#movies-form").on('submit', function(e) {
     
 
     $("#movie-table").append(HTMLtoAppend);
-    $('#movies-form').trigger(reset);
+    $('#movies-form').trigger("reset");
 });
 
-$("tbody").on("click", ".btn.btn-danger", function() {
+$("tbody").on("click", ".btn.btn-danger", function(e) {
     let removeIndex = moviesList.findIndex(movie => movie.currentId === +$(e.target).data("delIdx"));
     moviesList.splice(removeIndex, 1);
     $(e.target).closest("tr").remove();
